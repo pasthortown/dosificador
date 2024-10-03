@@ -1,5 +1,5 @@
-<div class="card my-2" [ngStyle]="{
-    'border-width': ingredient_selected ? '5px' : '3px',
+<div class="card" style="height: 60vh;" [ngStyle]="{
+    'border-width': '3px',
     'border-color': ingredient.peso_balanza > 0
         ? (ingredient.peso_balanza >= (ingredient.cantidad - ingredient.desviacion)
           && ingredient.peso_balanza <= (ingredient.cantidad + ingredient.desviacion)
@@ -10,23 +10,46 @@
     <table class="table table-over">
       <thead>
         <tr>
-          <th colspan="2">
-            <h4 [ngStyle]="{'font-weight': ingredient_selected ? 'bold' : 'normal'}">
-              {{ingredient.orden}} {{ingredient.nombre}} - ({{ingredient.cantidad}}{{ingredient.unidad}})
+          <th colspan="3">
+            <h4>
+              {{ingredient.orden}} {{ingredient.nombre}}
             </h4>
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th>
-            Peso
-          </th>
           <td>
-            {{ingredient.peso_balanza}}
+            <div class="row">
+              <h3 class="col-12" style="text-align: center;">
+                Cantidad Requerida
+              </h3>
+              <h1 class="col-12" style="text-align: center; font-size: 20vh;">
+                {{ingredient.cantidad}}
+              </h1>
+            </div>
+          </td>
+          <td>
+            <div class="row">
+              <h3 class="col-12" style="text-align: center;">
+                Peso Ingrediente Actual
+              </h3>
+              <h1 class="col-12" style="text-align: center; font-size: 20vh;" [ngStyle]="{
+                'color': ingredient.peso_balanza > 0
+                    ? (ingredient.peso_balanza >= (ingredient.cantidad - ingredient.desviacion)
+                      && ingredient.peso_balanza <= (ingredient.cantidad + ingredient.desviacion)
+                      ? 'rgb(56,136,9)' : 'red')
+                    : null
+                }">
+                {{ingredient.peso_balanza}}
+              </h1>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="card-footer" style="text-align: right;">
+    <button type="button" class="btn btn-primary" style="font-size: 4vh;">CONTINUAR</button>
   </div>
 </div>

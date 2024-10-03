@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ElementComponent } from "./element/element.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipe',
   standalone: true,
-  imports: [ElementComponent],
+  imports: [ElementComponent, CommonModule],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.scss'
 })
@@ -25,7 +26,7 @@ export class RecipeComponent {
       nombre: 'mora',
       cantidad: 50,
       unidad: 'g',
-      desviacion: 5 ,
+      desviacion: 2 ,
       peso_balanza: 45
     },
     {

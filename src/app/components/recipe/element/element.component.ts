@@ -11,5 +11,4 @@ import { Component, Input } from '@angular/core';
 export class ElementComponent {
 
   @Input('ingredient') ingredient: any = {};
-  @Input('ingredient_selected') ingredient_selected: boolean = false;
 }

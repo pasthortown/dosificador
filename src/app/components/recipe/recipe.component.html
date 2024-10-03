@@ -1,10 +1,57 @@
-<div class="row m-2">
-  <h1 class="text-center">{{recipe.titulo}}</h1>
+<div class="row">
+  <b class="text-center" style="font-size: 5vh;">{{recipe.titulo}}</b>
 </div>
-<div class="row m-2">
-  @for(ingredient of ingredients; track $index) {
-    <div class="col-3">
-      <app-element [ingredient]="ingredient" [ingredient_selected]="ingredient_selected == ingredient" (click)="(ingredient.peso_balanza <= 0 || ingredient.peso_balanza < (ingredient.cantidad - ingredient.desviacion) || ingredient.peso_balanza > (ingredient.cantidad + ingredient.desviacion)) ? ingredient_selected = ingredient : null"></app-element>
+<div class="row">
+  <div class="col-3" style="height: 90vh; overflow-y: auto;">
+    <table class="table table-over" style="font-size: 2.5vh;">
+      <tbody>
+        @for(ingredient of ingredients; track $index) {
+          <tr (click)="(ingredient.peso_balanza <= 0 || ingredient.peso_balanza < (ingredient.cantidad - ingredient.desviacion) || ingredient.peso_balanza > (ingredient.cantidad + ingredient.desviacion)) ? ingredient_selected = ingredient : null">
+            <th class="col-3" style="text-align: right;">
+              @if(ingredient_selected == ingredient) {
+                <i class="fa-solid fa-hand-point-right"></i>
+              }
+            </th>
+            <th [ngStyle]="{
+              'color': ingredient.peso_balanza > 0
+                  ? (ingredient.peso_balanza >= (ingredient.cantidad - ingredient.desviacion)
+                    && ingredient.peso_balanza <= (ingredient.cantidad + ingredient.desviacion)
+                    ? 'rgb(56,136,9)' : 'red')
+                  : null
+              }" class="col-1">{{ingredient.orden}}</th><td [ngStyle]="{
+            'color': ingredient.peso_balanza > 0
+                ? (ingredient.peso_balanza >= (ingredient.cantidad - ingredient.desviacion)
+                  && ingredient.peso_balanza <= (ingredient.cantidad + ingredient.desviacion)
+                  ? 'rgb(56,136,9)' : 'red')
+                : null
+            }" class="col-8">{{ingredient.nombre}} - ({{ingredient.cantidad}}{{ingredient.unidad}})</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="col-9">
+    <div class="row m-2">
+      <div class="col-12">
+        @if(ingredient_selected != null) {
+          <app-element [ingredient]="ingredient_selected"></app-element>
+        }
+      </div>
     </div>
-  }
+  </div>
+</div>
+
+<div class="col-6 totales" style="height: 20vh;">
+  <table class="table table-over">
+    <tbody>
+      <tr>
+        <th>
+          <h1 style="font-size: 6vh;">TOTAL RECETA</h1>
+        </th>
+        <td>
+          <h1 style="font-size: 6vh;">50g</h1>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
