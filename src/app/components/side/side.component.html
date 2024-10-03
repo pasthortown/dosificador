@@ -1,4 +1,6 @@
 <div class="item-list">
-  <app-item></app-item>
+  @for(recipe of recipes; track $index) {
+    <app-item [recipe]="recipe" (click)="recipe_selected = recipe" [selected_recipe]="recipe_selected == recipe"></app-item>
+  }
 </div>
 <app-user class="user"></app-user>

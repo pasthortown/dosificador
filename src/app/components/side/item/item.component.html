@@ -1,1 +1,9 @@
-<p>item works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card m-2">
+      <button type="button" class="btn" [class]="selected_recipe ? (recipe.codigo_material === '18000224' ? 'btn-success' : 'btn-info') : (recipe.codigo_material === '18000224' ? 'btn-outline-success' : 'btn-outline-info')" style="font-size: 5vh;">
+        {{recipe.titulo}}
+      </button>
+    </div>
+  </div>
+</div>

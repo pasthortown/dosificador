@@ -1,1 +1,10 @@
-<app-element></app-element>
+<div class="row m-2">
+  <h1 class="text-center">{{recipe.titulo}}</h1>
+</div>
+<div class="row m-2">
+  @for(ingredient of ingredients; track $index) {
+    <div class="col-3">
+      <app-element [ingredient]="ingredient" [ingredient_selected]="ingredient_selected == ingredient" (click)="(ingredient.peso_balanza <= 0 || ingredient.peso_balanza < (ingredient.cantidad - ingredient.desviacion) || ingredient.peso_balanza > (ingredient.cantidad + ingredient.desviacion)) ? ingredient_selected = ingredient : null"></app-element>
+    </div>
+  }
+</div>

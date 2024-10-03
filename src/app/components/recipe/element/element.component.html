@@ -1,1 +1,32 @@
-<p>element works!</p>
+<div class="card my-2" [ngStyle]="{
+    'border-width': ingredient_selected ? '5px' : '3px',
+    'border-color': ingredient.peso_balanza > 0
+        ? (ingredient.peso_balanza >= (ingredient.cantidad - ingredient.desviacion)
+          && ingredient.peso_balanza <= (ingredient.cantidad + ingredient.desviacion)
+          ? 'rgb(56,136,9)' : 'red')
+        : null
+    }">
+  <div class="card-body">
+    <table class="table table-over">
+      <thead>
+        <tr>
+          <th colspan="2">
+            <h4 [ngStyle]="{'font-weight': ingredient_selected ? 'bold' : 'normal'}">
+              {{ingredient.orden}} {{ingredient.nombre}} - ({{ingredient.cantidad}}{{ingredient.unidad}})
+            </h4>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            Peso
+          </th>
+          <td>
+            {{ingredient.peso_balanza}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

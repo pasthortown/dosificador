@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-element',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './element.component.html',
   styleUrl: './element.component.scss'
 })
 export class ElementComponent {
 
+  @Input('ingredient') ingredient: any = {};
+  @Input('ingredient_selected') ingredient_selected: boolean = false;
 }
